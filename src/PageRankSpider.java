@@ -19,10 +19,10 @@ public class PageRankSpider extends Spider {
 
     public Graph graph;
 
-    public static String htmlGraphFileName = "1htmlGraph.txt";
-    public static String graphFileName = "1graph.txt";
+    public static String htmlGraphFileName = "htmlGraph.txt";
+    public static String graphFileName = "graph.txt";
 
-    public static String logFileName = "1log.txt";
+    public static String logFileName = "log.txt";
 
     public Path htmlGraphPath;
     public Path graphPath;

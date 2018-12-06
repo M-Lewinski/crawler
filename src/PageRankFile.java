@@ -18,7 +18,7 @@ public class PageRankFile extends PageRank {
 
     public Graph pageGraph;
 
-    public static String pageRankFileName = "1pageRanks.txt";
+    public static String pageRankFileName = "pageRanks.txt";
     public Path pageRankPath;
 
     public float alpha = 0.15f;
