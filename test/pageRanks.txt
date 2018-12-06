@@ -1,0 +1,5 @@
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html 0.12490404567299479
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html 0.20555343095723638
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html 0.20555343095723638
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html 0.08697031657489628
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html 0.3770187758376361

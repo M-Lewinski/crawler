@@ -1,0 +1,26 @@
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html
+Indexing(1): http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html
+Indexing(2): http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html
+Indexing(3): http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html
+Already visited
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html
+Indexing(4): http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html
+Already visited
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html
+Indexing(5): http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html
+Trying: http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html
+Already visited
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html -> []
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html -> [http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html]
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html -> [http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html, http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html]
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html -> [http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html, http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html]
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html -> [http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html, http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html]
+PR(http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html) 0.08697031657489628
+PR(http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html) 0.20555343095723638
+PR(http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html) 0.3770187758376361
+PR(http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html) 0.12490404567299479
+PR(http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html) 0.20555343095723638

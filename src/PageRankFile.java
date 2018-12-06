@@ -18,7 +18,7 @@ public class PageRankFile extends PageRank {
 
     public Graph pageGraph;
 
-    public String pageRankFileName = "pageRanks.txt";
+    public static String pageRankFileName = "1pageRanks.txt";
     public Path pageRankPath;
 
     public float alpha = 0.15f;
@@ -30,7 +30,7 @@ public class PageRankFile extends PageRank {
     }
 
     public void generatePathTofile(String dir){
-        this.pageRankPath = Paths.get(new StringBuilder().append(dir).append("/").append(this.pageRankFileName).toString());
+        this.pageRankPath = Paths.get(new StringBuilder().append(this.pageRankFileName).toString());
         try {
             Files.write(this.pageRankPath,"".getBytes());
         } catch (IOException e){
@@ -56,7 +56,7 @@ public class PageRankFile extends PageRank {
         for (int i = 0; i < nodes.length; i++) {
             results.put(nodes[i], normR.get(i));
             try {
-                Files.write(pageRankPath,new StringBuilder().append(nodes[i].toString()).append(" ").append(normR.get(i)).append("\n").toString().getBytes(), StandardOpenOption.APPEND);
+                Files.write(pageRankPath,new StringBuilder().append(nodes[i].toString()).append(".html").append(" ").append(normR.get(i)).append("\n").toString().getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e){
                 e.printStackTrace();
                 System.exit(2);
@@ -69,7 +69,7 @@ public class PageRankFile extends PageRank {
         String[] split = output.split("\n");
 
         String normR = split[split.length-1];
-        normR = normR.replaceAll("[A-Za-z=]","").replaceAll("\\[","").replaceAll("]","").replaceAll(",","");
+        normR = normR.replaceAll("\\[","").replaceAll("]","").replaceAll(",","");
         String[] doubles = normR.split(" ");
         List<Double> result = new ArrayList<>();
         for (String elem: doubles) {

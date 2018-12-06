@@ -1,0 +1,5 @@
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/b.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/a.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/d.html
+http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/e.html http://www.cs.put.poznan.pl/mkadzinski/ezi/dzienne/lab10/test/c.html

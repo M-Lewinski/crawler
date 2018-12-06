@@ -1,3 +1,5 @@
+import ir.utilities.MoreMath;
+import ir.utilities.MoreString;
 import ir.webutils.*;
 
 import java.io.BufferedOutputStream;
@@ -9,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class PageRankSpider extends Spider {
 
@@ -16,53 +19,55 @@ public class PageRankSpider extends Spider {
 
     public Graph graph;
 
-    public String graphFileName = "graph.txt";
-    public String logFileName = "log.txt";
+    public static String htmlGraphFileName = "1htmlGraph.txt";
+    public static String graphFileName = "1graph.txt";
 
+    public static String logFileName = "1log.txt";
+
+    public Path htmlGraphPath;
     public Path graphPath;
     public Path logPath;
 
-    private List<List<Link>> listOutEdgesOfVisitedNodes;
+    public HashMap<String,String> htmlToFile;
 
     public PageRankSpider() {
         this.graph = new Graph();
         this.pageRankFile = new PageRankFile(graph);
-        this.listOutEdgesOfVisitedNodes = new ArrayList<>();
+        this.htmlToFile = new HashMap<>();
     }
 
     @Override
     protected List getNewLinks(HTMLPage page) {
         List list = super.getNewLinks(page);
-//        StringBuilder stringBuilder = new StringBuilder();
-//        stringBuilder.append(page.toString());
-//        for (Link outlink: (List<Link>) list) {
-//            stringBuilder.append(" ");
-//            graph.addEdge(page.toString(),outlink.toString());
-//            stringBuilder.append(outlink.toString());
-//        }
-//        stringBuilder.append("\n");
-//        String graphNode = stringBuilder.toString();
-//        try {
-//            Files.write(this.graphPath, graphNode.getBytes(), StandardOpenOption.APPEND);
-//        }
-//        catch (IOException e){
-//            e.printStackTrace();
-//            System.exit(2);
-//        }
-
-        this.listOutEdgesOfVisitedNodes.add((List<Link>) list);
-
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(page.getLink().toString());
+        for (Link outlink: (List<Link>) list) {
+            stringBuilder.append(" ");
+            stringBuilder.append(outlink.toString());
+        }
+        stringBuilder.append("\n");
+        String graphNode = stringBuilder.toString();
+        try {
+            Files.write(this.htmlGraphPath, graphNode.getBytes(), StandardOpenOption.APPEND);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            System.exit(2);
+        }
+        this.htmlToFile.put(page.getLink().toString(), "P" +  MoreString.padWithZeros(count,(int)Math.floor(MoreMath.log(maxCount, 10)) + 1));
         return list;
     }
 
     @Override
     protected void handleDCommandLineOption(String value) {
         super.handleDCommandLineOption(value);
-        graphFileName = new StringBuilder().append(value).append("/").append(graphFileName).toString();
-        logFileName = new StringBuilder().append(value).append("/").append(logFileName).toString();
+        htmlGraphFileName = new StringBuilder().append(htmlGraphFileName).toString();
+        logFileName = new StringBuilder().append(logFileName).toString();
+        htmlGraphPath = Paths.get(htmlGraphFileName);
         graphPath = Paths.get(graphFileName);
         logPath = Paths.get(logFileName);
         try {
+            Files.write(htmlGraphPath,"".getBytes());
             Files.write(graphPath,"".getBytes());
             Files.write(logPath,"".getBytes());
         } catch (IOException e){
@@ -95,27 +100,32 @@ public class PageRankSpider extends Spider {
     }
 
     private void generateGraph(){
-        int i = 0;
-        for (Link nodeLink : (HashSet<Link>) this.visited) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(nodeLink.toString());
-            for (Link outlink: (List<Link>) this.listOutEdgesOfVisitedNodes.get(i)) {
-                stringBuilder.append(" ");
-                stringBuilder.append(outlink.toString());
-            }
-            stringBuilder.append("\n");
-            String graphNode = stringBuilder.toString();
-            try {
-                Files.write(this.graphPath, graphNode.getBytes(), StandardOpenOption.APPEND);
-            }
-            catch (IOException e){
-                e.printStackTrace();
-                System.exit(2);
-            }
-            i++;
+        try (Stream<String> stream = Files.lines(this.htmlGraphPath)) {
+            stream.forEachOrdered(this::convertFromHtmlToFile);
+
+            this.graph.readFromFile(graphFileName);
+        } catch (IOException e){
+            e.printStackTrace();
+            System.exit(2);
         }
+    }
+
+    private void convertFromHtmlToFile(String str){
+        String[] split = str.split(" ");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < split.length; i++) {
+            String htmlLink = split[i];
+            String index = this.htmlToFile.get(htmlLink);
+            if (index == null){
+                if (i == 0) return;
+                else continue;
+            }
+            if (i != 0) stringBuilder.append(" ");
+            stringBuilder.append(index);
+        }
+        stringBuilder.append("\n");
         try {
-            this.graph.readFromFile(this.graphFileName);
+            Files.write(this.graphPath,stringBuilder.toString().getBytes(),StandardOpenOption.APPEND);
         } catch (IOException e){
             e.printStackTrace();
             System.exit(2);
